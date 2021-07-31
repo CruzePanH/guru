@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="keywords" content="扫码支付">
+<meta name="description" content="用户通过扫描商户展示在各种场景中的二维码进行支付">
+<title>【微信支付】扫码支付开发者文档</title>
+
+
+<link rel="stylesheet" href="./统一下单_files/common.css">
+<script type="text/javascript" src="./统一下单_files/jquery-1.7.min.js.下载"></script>
+<script type="text/javascript">
+var TA_STATS_ARGS = {
+	rate: 1,
+	projectID: 172,
+	channelID: 205,
+	pageID: 324,
+	debug: false
+}
+var _speedMark = new Date();
+</script>
+</head>
+<body class="technology-integr">
+<!-- 头部 S -->
+<script>
+$(function(){
+    $(".showPopUpJS").mouseover(function(){ 
+		$(this).addClass("show-dropdown-body");
+	});
+	$(".showPopUpJS").mouseout(function(){
+		$(this).removeClass("show-dropdown-body");
+	});
+});
+</script>
+<div class="header">
+    <div class="wrap">
+        <div class="logo">
+            <h1 class="main-logo"><a href="https://pay.weixin.qq.com/wiki/doc/api/index.html" title="微信支付开发文档">微信支付开发文档</a></h1>
+            <div class="sub-logo np"></div>
+            
+        </div>
+        <div class="link">
+        	<a href="https://pay.weixin.qq.com/wiki/doc/api/index.html" target="_blank">开发文档首页</a>
+			<i class="vs">|</i>
+        	<a href="https://pay.weixin.qq.com/index.php" target="_blank">商户平台首页</a>
+			<i class="vs">|</i>
+			<a target="_blank" href="http://wxpay.wxutil.com/qa/index.php">商户问答系统</a>
+        	<i class="vs">|</i>
+            <div class="dropdown-box showPopUpJS">
+                <a class="dropdown-head" href="javascript:;">帮助中心<span class="dropdown-arrow"></span></a>
+                <div class="dropdown-body">
+                    <ul>
+                        <li class="kefu">
+                            <p class="tel">客服：95017</p>
+                            <p class="time">周一到周五 09:00-18:00</p>
+                        </li>
+                        <li>
+                            <a href="http://kf.qq.com/product/wechatpaymentmerchant.html" target="_blank">自助服务专区</a>
+                        </li>
+                        <li class="last">
+                            <a href="http://kf.qq.com/product/wechatpaymentmerchant.html#hid=329" target="_blank">热点开发问题</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+<div class="query hide">
+	<div class="wrap tr">
+		<div class="postion"><!--a href="index.html">返回</a--></div>
+    </div>
+ </div><!-- 头部 E -->
+
+
+<!-- 内容 [[ -->
+<div class="container wrap">
+            <!-- 侧边栏 [[ -->
+            <div class="sidebar">
+                <div class="menu">
+                	<div class="menu-hd"><h3><i class="type-ico"></i>扫码支付</h3></div>
+                    <div class="munu-bd">                
+                    <!-- 交互说明
+                         1.给标签dl添加样式"open",显示下拉列表
+                         2.给标签dt或dd添加样式"on",显示选中状态
+                    -->
+                    <dl id="1">
+                        <dt><a href="javascript:;"><i class="ico-arrows"></i>文档说明</a></dt>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=1_1">阅读对象</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=1_2">版本说明</a></dd>
+                    </dl>
+                    <dl id="2">
+                        <dt><a href="javascript:;"><i class="ico-arrows"></i>术语</a></dt>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=2_1">支付模式</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=2_2">名词解释</a></dd>
+                    </dl>
+                    <dl id="3">
+                        <dt><a href="javascript:;"><i class="ico-arrows"></i>支付账户</a></dt>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=3_1">支付账户</a></dd>
+                    </dl>
+                    <dl id="4">
+                        <dt><a href="javascript:;"><i class="ico-arrows"></i>接口规则</a></dt>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_1">协议规则</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">参数规定</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_3">安全规范</a></dd>
+						<dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_4">获取openid</a></dd>
+                    </dl>
+                    <dl id="6">
+                        <dt><a href="javascript:;"><i class="ico-arrows"></i>扫码支付</a></dt>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_1">场景介绍</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_2" onclick="Common.exdAttrAPI(865959);">案例及规范</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_3">开发步骤</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_4">模式一</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=6_5">模式二</a></dd>
+                    </dl>
+                    <dl id="9" class="open">
+                        <dt><a href="javascript:;"><i class="ico-arrows"></i>API列表</a></dt>
+                        <dd class="on"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1">统一下单</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_2">查询订单</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_3">关闭订单</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_4">申请退款</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_5">查询退款</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_6">下载对账单</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_7">支付结果通知</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_8">交易保障</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_9">转换短链接</a></dd>
+						<dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_16&amp;index=10">退款结果通知</a></dd>
+                        <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_17&amp;index=11">拉取订单评价数据</a></dd>                        
+                    </dl>
+					<dl id="23">
+                <dt><a href="javascript:;"><i class="ico-arrows"></i>最佳实践</a></dt>
+                <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=23_1">支付验收指引</a></dd>  
+				<dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=23_2">网络设置指引</a></dd>  
+				<dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=23_3">最佳安全实践</a></dd>       
+            </dl>
+                <dl id="11" class="single">
+                <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=11_1"><i class="ico-arrows"></i>SDK与DEMO下载</a></dd>
+                <dd><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=11_3&amp;index=2"><i class="ico-arrows"></i>联系我们 </a></dd>
+                </dl>
+ 
+                </div>
+                </div>
+            </div>
+            <!-- 侧边栏 ]] -->
+            <!-- 主区域 [[ -->
+            <div class="content" id="art-content">
+                <!-- 内容 [[ -->
+		            <style>
+.add span{ display: inline-block; width: 12px;padding-bottom:4px;padding-top:2px;  text-align: center; line-height:0.6; border: 1px solid #e7e7e7; border-radius: 4px; cursor: pointer; margin-right: 5px; }
+.two td:first-child{ padding-left: 37px; }
+</style>
+<div class="content-hd">
+    <h2 class="with-border">统一下单</h2>
+</div>   
+<div class="content-bd">
+    <div class="data-box with-padding">
+      <div class="data-hd">
+        <h3><a name="1"></a>应用场景</h3>
+      </div>
+      <div class="data-bd">
+    	<p class="mb20">除被扫支付场景以外，商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再按扫码、JSAPI、APP等不同场景生成交易串调起支付。 </p>
+      </div>
+
+        <div class="data-hd">
+            <h3><a name="2"></a>状态机</h3>
+        </div>
+            <p>支付状态转变如下：</p>
+            <p><img src="./统一下单_files/chapter9_1_0.jpg" alt="" width="374" height="412"></p> 
+  </div>
+    <div class="data-box with-padding">
+        <div class="data-hd">    
+    		<h3><a name="3"></a>接口链接 </h3>
+      </div>
+      <div class="data-bd">
+    	<p class="mb20">URL地址：https://api.mch.weixin.qq.com/pay/unifiedorder</p>
+      </div>
+    </div>
+    <div class="data-box with-padding">
+        <div class="data-hd">    
+    		<h3><a name="4"></a>是否需要证书 </h3>
+      </div>
+      <div class="data-bd">
+    	<p class="mb20">否 </p>
+      </div>
+    </div>
+    <div class="data-box with-padding">
+        <div class="data-hd">    
+    		<h3><a name="5"></a>请求参数 </h3>
+      </div>
+      <div class="data-bd">
+    <div class="table-wrp with-border">
+      <table class="table">
+      <thead>
+      <tr>
+        <th class="name">字段名</th>
+        <th class="var">变量名</th>
+        <th class="require">必填</th>
+        <th class="type">类型</th>
+        <th class="example">示例值</th>
+       <th class="description">描述</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>公众账号ID</td>
+        <td>appid</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>wxd678efh567hg6787</td>
+        <td>微信支付分配的公众账号ID（企业号corpid即为此appId）</td>
+      </tr>
+      <tr>
+        <td>商户号</td>
+        <td>mch_id</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>1230000109</td>
+        <td>微信支付分配的商户号</td>
+      </tr>
+      <tr>
+        <td>设备号</td>
+        <td>device_info</td>
+        <td>否</td>
+        <td>String(32)</td>
+        <td>013467007045764</td>
+        <td>自定义参数，可以为终端设备号(门店号或收银设备ID)，PC网页或公众号内支付可以传"WEB"</td>
+      </tr>
+      <tr>
+        <td>随机字符串</td>
+        <td>nonce_str</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>5K8264ILTKCH16CQ2502SI8ZNMTM67VS</td>
+        <td>随机字符串，长度要求在32位以内。推荐<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_3">随机数生成算法</a></td>
+      </tr>
+      <tr>
+        <td>签名</td>
+        <td>sign</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>C380BEC2BFD727A4B6845133519F3AD6</td>
+        <td>通过签名算法计算得出的签名值，详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_3">签名生成算法</a></td>
+      </tr>
+	  <tr>
+                 <td>签名类型</td>
+                 <td>sign_type</td>
+                 <td>否</td>
+                 <td>String(32)</td>
+                 <td>MD5</td>
+                 <td>签名类型，默认为MD5，支持HMAC-SHA256和MD5。</td>
+              </tr>
+      <tr>
+        <td>商品描述</td>
+        <td>body</td>
+        <td>是</td>
+        <td>String(128)</td>
+        <td>腾讯充值中心-QQ会员充值</td>
+        <td><p>商品简单描述，该字段请按照规范传递，具体请见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">参数规定</a></p>          </td>
+      </tr>
+      <tr>
+        <td>商品详情</td>
+        <td>detail</td>
+        <td>否</td>
+        <td>String(6000)</td>
+        <td>&nbsp;</td>
+        <td>商品详细描述，对于使用单品优惠的商户，改字段必须按照规范上传，详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/danpin.php?chapter=9_102&amp;index=2">“单品优惠参数说明”</a></td>
+      </tr>
+      <tr>
+        <td>附加数据</td>
+        <td>attach</td>
+        <td>否</td>
+        <td>String(127)</td>
+        <td>深圳分店</td>
+        <td>附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。</td>
+      </tr>
+      <tr>
+        <td>商户订单号</td>
+        <td>out_trade_no</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>20150806125346</td>
+        <td>商户系统内部订单号，要求32个字符内，只能是数字、大小写字母_-|*@ ，且在同一个商户号下唯一。详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">商户订单号</a></td>
+      </tr>
+      <tr>
+        <td>标价币种</td>
+        <td>fee_type</td>
+        <td>否</td>
+        <td>String(16)</td>
+        <td>CNY</td>
+        <td>符合ISO&nbsp;4217标准的三位字母代码，默认人民币：CNY，详细列表请参见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">货币类型</a></td>
+      </tr>
+      <tr>
+        <td>标价金额</td>
+        <td>total_fee</td>
+        <td>是</td>
+        <td>Int</td>
+        <td>88</td>
+        <td>订单总金额，单位为分，详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">支付金额</a></td>
+      </tr>
+      <tr>
+        <td>终端IP</td>
+        <td>spbill_create_ip</td>
+        <td>是</td>
+        <td>String(16)</td>
+        <td>123.12.12.123</td>
+        <td>APP和网页支付提交用户端ip，Native支付填调用微信支付API的机器IP。</td>
+      </tr>
+      <tr>
+        <td>交易起始时间</td>
+        <td>time_start</td>
+        <td>否</td>
+        <td>String(14)</td>
+        <td>20091225091010</td>
+        <td>订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">时间规则</a></td>
+      </tr>
+      <tr>
+        <td>交易结束时间</td>
+        <td>time_expire</td>
+        <td>否</td>
+        <td>String(14)</td>
+        <td>20091227091010</td>
+        <td><p>订单失效时间，格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。其他详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">时间规则</a></p><b>注意：最短失效时间间隔必须大于5分钟</b></td>
+      </tr>
+      <tr>
+        <td>订单优惠标记</td>
+        <td>goods_tag</td>
+        <td>否</td>
+        <td>String(32)</td>
+        <td>WXG</td>
+        <td>订单优惠标记，使用代金券或立减优惠功能时需要的参数，说明详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/tools/sp_coupon.php?chapter=12_1">代金券或立减优惠</a></td>
+      </tr>
+      <tr>
+        <td>通知地址</td>
+        <td>notify_url</td>
+        <td>是</td>
+        <td>String(256)</td>
+        <td>http://www.weixin.qq.com/wxpay/pay.php</td>
+        <td>异步接收微信支付结果通知的回调地址，通知url必须为外网可访问的url，不能携带参数。</td>
+      </tr>
+      <tr>
+        <td>交易类型</td>
+        <td>trade_type</td>
+        <td>是</td>
+        <td>String(16)</td>
+        <td>JSAPI</td>
+        <td>取值如下：JSAPI，NATIVE，APP等，说明详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">参数规定</a></td>
+      </tr>
+      <tr>
+        <td>商品ID</td>
+        <td>product_id</td>
+        <td>否</td>
+        <td>String(32)</td>
+        <td>12235413214070356458058</td>
+        <td>trade_type=NATIVE时（即扫码支付），此参数必传。此参数为二维码中包含的商品ID，商户自行定义。</td>
+      </tr>
+	  <tr>
+        <td>指定支付方式</td>
+        <td>limit_pay</td>
+        <td>否</td>
+        <td>String(32)</td>
+        <td>no_credit</td>
+        <td>上传此参数no_credit--可限制用户不能使用信用卡支付</td>
+      </tr>
+      <tr>
+        <td>用户标识</td>
+        <td>openid</td>
+        <td>否</td>
+        <td>String(128)</td>
+        <td>oUpF8uMuAJO_M2pxb1Q9zNjWeS6o</td>
+		<td>trade_type=JSAPI时（即公众号支付），此参数必传，此参数为微信用户在商户对应appid下的唯一标识。openid如何获取，可参考【<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_4">获取openid</a>】。企业号请使用【<a target="_blank" href="http://qydev.weixin.qq.com/wiki/index.php?title=OAuth%E9%AA%8C%E8%AF%81%E6%8E%A5%E5%8F%A3">企业号OAuth2.0接口</a>】获取企业号内成员userid，再调用【<a target="_blank" href="http://qydev.weixin.qq.com/wiki/index.php?title=Userid%E4%B8%8Eopenid%E4%BA%92%E6%8D%A2%E6%8E%A5%E5%8F%A3">企业号userid转openid接口</a>】进行转换</td>
+      </tr>
+						<tr class="a">
+        <td class="add"><span class="a">+</span>场景信息</td>
+        <td>scene_info</td>
+        <td>否</td>
+        <td>String(256)</td>
+        <td><p>{"store_info" : {<br>"id": "SZTX001",<br>"name": "腾大餐厅",<br>"area_code": "440305",<br>"address": "科技园中一路腾讯大厦" }}</p>
+          </td>
+        <td><p>该字段用于上报场景信息，目前支持上报实际门店信息。该字段为JSON对象数据，对象格式为{"store_info":{"id": "门店ID","name": "名称","area_code": "编码","address": "地址" }} ，字段详细说明请点击行前的+展开</p>
+          </td>
+      </tr>
+						<tr class="a1 two" style="display: none;">
+                          <td>-门店id</td>
+						  <td>id</td>
+						  <td>否</td>
+						  <td>String(32)</td>
+						  <td>SZTX001</td>
+						  <td>门店唯一标识 </td>
+					  </tr>
+						<tr class="a1 two" style="display: none;">
+                          <td>-门店名称 </td>
+						  <td>name</td>
+						  <td>否 </td>
+						  <td>String(64)</td>
+						  <td>腾讯大厦腾大餐厅 </td>
+						  <td>门店名称 </td>
+					  </tr>
+						<tr class="a1 two" style="display: none;">
+                          <td>-门店行政区划码 </td>
+						  <td>area_code</td>
+						  <td>否 </td>
+						  <td>String(6)</td>
+						  <td>440305</td>
+						  <td>门店所在地行政区划码，详细见<a href="https://pay.weixin.qq.com/wiki/doc/api/download/store_adress.csv">《最新县及县以上行政区划代码》</a></td>
+					  </tr>
+						<tr class="a1 two" style="display: none;">
+                          <td>-门店详细地址 </td>
+						  <td>address</td>
+						  <td>否 </td>
+						  <td>String(128)</td>
+						  <td>科技园中一路腾讯大厦 </td>
+						  <td>门店详细地址 </td>
+					  </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="mb10">举例如下： </p>
+    <div class="guide-msg mb20">
+    <p>&lt;xml&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;appid&gt;wx2421b1c4370ec43b&lt;/appid&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;attach&gt;支付测试&lt;/attach&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;body&gt;JSAPI支付测试&lt;/body&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;mch_id&gt;10000100&lt;/mch_id&gt;<br>
+				  &nbsp;&nbsp;&nbsp;&lt;detail&gt;&lt;![CDATA[{
+"goods_detail":[
+{
+"goods_id":"iphone6s_16G",
+"wxpay_goods_id":"1001",
+"goods_name":"iPhone6s 16G",
+"quantity":1,
+"price":528800,
+"goods_category":"123456",
+"body":"苹果手机"
+},
+{
+"goods_id":"iphone6s_32G",
+"wxpay_goods_id":"1002",
+"goods_name":"iPhone6s 32G",
+"quantity":1,
+"price":608800,
+"goods_category":"123789",
+"body":"苹果手机"
+}
+]
+}]]&gt;&lt;/detail&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;nonce_str&gt;1add1a30ac87aa2db72f57a2375d8fec&lt;/nonce_str&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;notify_url&gt;http://wxpay.wxutil.com/pub_v2/pay/notify.v2.php&lt;/notify_url&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;openid&gt;oUpF8uMuAJO_M2pxb1Q9zNjWeS6o&lt;/openid&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;out_trade_no&gt;1415659990&lt;/out_trade_no&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;spbill_create_ip&gt;14.23.150.211&lt;/spbill_create_ip&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;total_fee&gt;1&lt;/total_fee&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;trade_type&gt;JSAPI&lt;/trade_type&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;sign&gt;0CB01533B8C1EF103065174F50BCA001&lt;/sign&gt;<br>
+      &lt;/xml&gt; </p>
+      </div>
+    <p>注：参数值用XML转义即可，CDATA标签用于说明数据不被XML解析器解析。 </p>
+      </div>
+    </div>
+    <div class="data-box with-padding">
+        <div class="data-hd">    
+    		<h3><a name="6"></a>返回结果 </h3>
+        </div>
+      	<div class="data-bd">            
+    <div class="table-wrp with-border">
+      <table class="table">
+      <thead>
+      <tr>
+        <th class="name">字段名</th>
+       <th class="var">变量名</th>
+        <th class="require">必填</th>
+        <th class="type">类型</th>
+        <th class="example">示例值</th>
+        <th class="description">描述</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>返回状态码</td>
+        <td>return_code</td>
+        <td>是</td>
+        <td>String(16)</td>
+        <td>SUCCESS</td>
+        <td><p>SUCCESS/FAIL </p>
+        <p>此字段是通信标识，非交易标识，交易是否成功需要查看result_code来判断</p></td>
+      </tr>
+      <tr>
+        <td>返回信息</td>
+        <td>return_msg</td>
+        <td>否</td>
+        <td>String(128)</td>
+        <td>签名失败</td>
+        <td><p>返回信息，如非空，为错误原因 </p>
+            <p>签名失败 </p>
+        <p>参数格式校验错误</p></td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="mb10">以下字段在return_code为SUCCESS的时候有返回 </p>
+    <div class="table-wrp with-border">
+      <table class="table">
+      <thead>
+      <tr>
+        <th class="name">字段名</th>
+        <th class="var">变量名</th>
+        <th class="require">必填</th>
+        <th class="type">类型</th>
+        <th class="example">示例值</th>
+       <th class="description">描述</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>公众账号ID</td>
+        <td>appid</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>wx8888888888888888</td>
+        <td>调用接口提交的公众账号ID</td>
+      </tr>
+      <tr>
+        <td>商户号</td>
+        <td>mch_id</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>1900000109</td>
+        <td>调用接口提交的商户号</td>
+      </tr>
+      <tr>
+        <td>设备号</td>
+        <td>device_info</td>
+        <td>否</td>
+        <td>String(32)</td>
+        <td>013467007045764</td>
+        <td>自定义参数，可以为请求支付的终端设备号等</td>
+      </tr>
+      <tr>
+        <td>随机字符串</td>
+        <td>nonce_str</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>5K8264ILTKCH16CQ2502SI8ZNMTM67VS</td>
+        <td>微信返回的随机字符串</td>
+      </tr>
+      <tr>
+        <td>签名</td>
+        <td>sign</td>
+        <td>是</td>
+        <td>String(32)</td>
+        <td>C380BEC2BFD727A4B6845133519F3AD6</td>
+        <td>微信返回的签名值，详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_3">签名算法</a></td>
+      </tr>
+      <tr>
+        <td>业务结果</td>
+        <td>result_code</td>
+        <td>是</td>
+        <td>String(16)</td>
+        <td>SUCCESS</td>
+        <td>SUCCESS/FAIL</td>
+      </tr>
+      <tr>
+        <td>错误代码</td>
+        <td>err_code</td>
+        <td>否</td>
+        <td>String(32)</td>
+        <td>SYSTEMERROR</td>
+        <td>详细参见下文错误列表</td>
+      </tr>
+      <tr>
+        <td>错误代码描述</td>
+        <td>err_code_des</td>
+        <td>否</td>
+        <td>String(128)</td>
+        <td>系统错误</td>
+        <td>错误信息描述</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="mb10">以下字段在return_code&nbsp;和result_code都为SUCCESS的时候有返回 </p>
+    <div class="table-wrp with-border">
+      <table class="table">
+      <thead>
+      <tr>
+        <th class="name">字段名</th>
+        <th class="var">变量名</th>
+        <th class="require">必填</th>
+        <th class="type">类型</th>
+        <th class="example">示例值</th>
+       <th class="description">描述</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>交易类型</td>
+        <td>trade_type</td>
+        <td>是</td>
+        <td>String(16)</td>
+        <td>JSAPI</td>
+        <td>交易类型，取值为：JSAPI，NATIVE，APP等，说明详见<a target="_blank" href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=4_2">参数规定</a></td>
+      </tr>
+      <tr>
+        <td>预支付交易会话标识</td>
+        <td>prepay_id</td>
+        <td>是</td>
+        <td>String(64)</td>
+        <td>wx201410272009395522657a690389285100</td>
+        <td>微信生成的预支付会话标识，用于后续接口调用中使用，该值有效期为2小时</td>
+      </tr>
+      <tr>
+        <td>二维码链接</td>
+        <td>code_url</td>
+        <td>否</td>
+        <td>String(64)</td>
+        <td>URl：weixin：//wxpay/s/An4baqw</td>
+        <td>trade_type为NATIVE时有返回，用于生成二维码，展示给用户进行扫码支付</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="mb10">举例如下：</p>
+    <div class="guide-msg mb10">
+    <p>&lt;xml&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;return_code&gt;&lt;![CDATA[SUCCESS]]&gt;&lt;/return_code&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;return_msg&gt;&lt;![CDATA[OK]]&gt;&lt;/return_msg&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;appid&gt;&lt;![CDATA[wx2421b1c4370ec43b]]&gt;&lt;/appid&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;mch_id&gt;&lt;![CDATA[10000100]]&gt;&lt;/mch_id&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;nonce_str&gt;&lt;![CDATA[IITRi8Iabbblz1Jc]]&gt;&lt;/nonce_str&gt;<br>
+	  &nbsp;&nbsp;&nbsp;&lt;openid&gt;&lt;![CDATA[oUpF8uMuAJO_M2pxb1Q9zNjWeS6o]]&gt;&lt;/openid&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;sign&gt;&lt;![CDATA[7921E432F65EB8ED0CE9755F0E86D72F]]&gt;&lt;/sign&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;result_code&gt;&lt;![CDATA[SUCCESS]]&gt;&lt;/result_code&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;prepay_id&gt;&lt;![CDATA[wx201411101639507cbf6ffd8b0779950874]]&gt;&lt;/prepay_id&gt;<br>
+      &nbsp;&nbsp;&nbsp;&lt;trade_type&gt;&lt;![CDATA[JSAPI]]&gt;&lt;/trade_type&gt;<br>
+      &lt;/xml&gt; </p>
+    </div>
+      </div>
+    </div>
+    <div class="data-box with-padding">
+        <div class="data-hd">      
+    		<h3><a name="7"></a>错误码 </h3>
+    	</div>
+        <div class="data-bd">      
+            <div class="table-wrp with-border">
+              <table class="table">
+              <thead>
+              <tr>
+                <th width="22%">名称</th>
+                <th width="16%">描述</th>
+                <th>原因</th>
+                <th>解决方案</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>NOAUTH</td>
+                <td>商户无此接口权限</td>
+                <td>商户未开通此接口权限</td>
+                <td>请商户前往申请此接口权限</td>
+              </tr>
+              <tr>
+                <td>NOTENOUGH</td>
+                <td>余额不足</td>
+                <td>用户帐号余额不足</td>
+                <td>用户帐号余额不足，请用户充值或更换支付卡后再支付</td>
+              </tr>
+              <tr>
+                <td>ORDERPAID</td>
+                <td>商户订单已支付</td>
+                <td>商户订单已支付，无需重复操作</td>
+                <td>商户订单已支付，无需更多操作</td>
+              </tr>
+              <tr>
+                <td>ORDERCLOSED</td>
+                <td>订单已关闭</td>
+                <td>当前订单已关闭，无法支付</td>
+                <td>当前订单已关闭，请重新下单</td>
+              </tr>
+              <tr>
+                <td>SYSTEMERROR</td>
+                <td>系统错误</td>
+                <td>系统超时</td>
+                <td>系统异常，请用相同参数重新调用</td>
+              </tr>
+              <tr>
+                <td>APPID_NOT_EXIST</td>
+                <td>APPID不存在</td>
+                <td>参数中缺少APPID</td>
+                <td>请检查APPID是否正确</td>
+              </tr>
+              <tr>
+                <td>MCHID_NOT_EXIST</td>
+                <td>MCHID不存在</td>
+                <td>参数中缺少MCHID</td>
+                <td>请检查MCHID是否正确</td>
+              </tr>
+              <tr>
+                <td>APPID_MCHID_NOT_MATCH</td>
+                <td>appid和mch_id不匹配</td>
+                <td>appid和mch_id不匹配</td>
+                <td>请确认appid和mch_id是否匹配</td>
+              </tr>
+              <tr>
+                <td>LACK_PARAMS</td>
+                <td>缺少参数</td>
+                <td>缺少必要的请求参数</td>
+                <td>请检查参数是否齐全</td>
+              </tr>
+              <tr>
+                <td>OUT_TRADE_NO_USED</td>
+                <td>商户订单号重复</td>
+                <td>同一笔交易不能多次提交</td>
+                <td>请核实商户订单号是否重复提交</td>
+              </tr>
+              <tr>
+                <td>SIGNERROR</td>
+                <td>签名错误</td>
+                <td>参数签名结果不正确</td>
+                <td>请检查签名参数和方法是否都符合签名算法要求</td>
+              </tr>
+              <tr>
+                <td>XML_FORMAT_ERROR</td>
+                <td>XML格式错误</td>
+                <td>XML格式错误</td>
+                <td>请检查XML参数格式是否正确</td>
+              </tr>
+              <tr>
+                <td>REQUIRE_POST_METHOD</td>
+                <td>请使用post方法</td>
+                <td>未使用post传递参数&nbsp;</td>
+                <td>请检查请求参数是否通过post方法提交</td>
+              </tr>
+              <tr>
+                <td>POST_DATA_EMPTY</td>
+                <td>post数据为空</td>
+                <td>post数据不能为空</td>
+                <td>请检查post数据是否为空</td>
+              </tr>
+              <tr>
+                <td>NOT_UTF8</td>
+                <td>编码格式错误</td>
+                <td>未使用指定编码格式</td>
+                <td>请使用UTF-8编码格式</td>
+              </tr>
+              </tbody>
+              </table>
+            </div>
+		</div>
+     </div>
+ </div>
+     
+	<script>
+
+$("span").click(function(){
+    var display=$("."+this.className+"1").css("display");
+  if(display=='none'){
+$("."+this.className+"1").css( "display","");
+$(this).html("-");
+  }
+  else {
+$("."+this.className+"1").css("display","none");
+$(this).html("+");
+
+  }
+});
+</script>
+  
+<!--[if !IE]>|xGv00|5a06b3bd7410d5bc6acc620bec3101ac<![endif]-->					<script>
+					$(document).ready(function(){
+						 
+						 $("dt").bind("click", function(){
+							//$("dl").removeClass("open");
+							if($(this).parent("dl").hasClass("open")) {
+							$(this).parent("dl").removeClass("open");}else{
+								 
+						  	$(this).parent("dl").addClass("open");}
+						});
+						var re = /\d{1,2}_\d{1,2}/g;
+						var x,y,z;
+						z ='';
+						if((x = re.exec(location.search)) !=null){
+							y = (''+x).split("_");
+							dl =$("dl#"+y[0]);
+							dl.addClass("open");
+							if(z == ''){
+								z = y[1]-1;
+							}else{
+								z--;
+							}
+							$(dl.children("dd")[z]).addClass("on");
+						}
+					});
+					</script>
+            	<!-- 内容 ]] -->
+        	</div>
+            <!-- 主区域 ]] -->
+
+</div>
+<!-- 内容 ]] -->
+
+<!-- 底部 [[ -->
+<!--<div class="footer">
+    <a href="http://help.tenpay.com/cgi-bin/helpcenter/help_center.cgi?id=1&amp;type=0" target="_blank">关于财付通</a>
+    <i class="vs">|</i>
+    <a href="mailto:weixinpay@tencent.com">联系邮箱</a>
+    <i class="vs">|</i>
+    <a href="../common/protocol.shtml" target="_blank">商户平台使用协议</a>
+    <i class="vs">|</i>
+    Powered By Tencent &amp; Tenpay　Copyright &copy; 2005-2016 All Rights Reserved.
+</div>-->
+<div class="page-right">
+    <div class="Catalog-box">
+
+        <div id="Catalog-box">
+        <dl style="display:none;"><dd class="cate-item1"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#1">应用场景</a></dd><dd class="cate-item1"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#2">状态机</a></dd><dd class="cate-item1"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#3">接口链接 </a></dd><dd class="cate-item1"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#4">是否需要证书 </a></dd><dd class="cate-item1"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#5">请求参数 </a></dd><dd class="cate-item1"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#6">返回结果 </a></dd><dd class="cate-item1"><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#7">错误码 </a></dd></dl></div>
+
+        <div class="complaints"><ul><li><a href="https://support.qq.com/products/14388" target="_blank">我要吐槽</a></li><li><a href="https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_1#">返回顶部</a></li></ul></div>
+        </div>
+    </div>
+<div class="footer">
+    <div class="wrap">
+        <p><a target="_blank" href="http://kf.qq.com/faq/170117mABNnU170117uEFBVN.html">关于财付通</a><i class="vs">|</i><a target="_blank" href="https://pay.weixin.qq.com/index.php/core/home/pay_pact_v4"><span class="hide">微信支付</span>平台使用协议</a> <i class="vs">|</i><a href="https://pay.weixin.qq.com/index.php/public/apply_sign/protocol_v2" target="_blank">支付服务协议</a> <i class="vs">|</i><span>Powered By Tencent &amp; Tenpay　Copyright©2005-<script>
+var year="";
+mydate=new Date();
+myyear=mydate.getYear();
+year=(myyear > 200) ? myyear : 1900 + myyear;
+document.write(year);
+</script>2017 Tenpay All Rights Reserved.</span></p>
+    </div>
+</div>
+<script language="javascript" src="./统一下单_files/tcss.ping.https.js.下载"></script>
+<script language="javascript">
+    if(typeof(pgvMain) == 'function')
+        pgvMain();
+</script>
+<script src="./统一下单_files/CateNav.js.下载"></script>
+
+	<script type="text/javascript">
+	$(function(){
+		$.CateNav('#art-content','#Catalog-box');//第一个参数为存放文章内容的box,第二个参数为存放生成目录的box
+	})
+	</script>
+<script>TA_STATS_ARGS={}</script>
+<script type="text/javascript" src="./统一下单_files/wechatpay.min.js.下载" charset="UTF−8"></script>
+<!-- <script type="text/javascript" src="https://res.wx.qq.com/payactres/zh_CN/htmledition/js/lib/analysis/2.0/lib-min.js" charset="UTF−8" async="async" defer="defer"></script> --><!--[if !IE]>|xGv00|7150225310cb1f9befe9b0406fcb9c47<![endif]--><!-- 底部 ]] -->
+
+</body></html>
